@@ -1,0 +1,13 @@
+.navbar {
+  height: 5vh;
+  background-color: #0a1612;
+}
+
+.navbar span {
+  color: white;
+  margin: 1em 2em 2em;
+}
+
+.navbar a {
+  text-decoration: none;
+}

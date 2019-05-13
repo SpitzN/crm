@@ -1,0 +1,12 @@
+.actions-container {
+  display: grid;
+}
+
+.add-client-container {
+  display: grid;
+  width: 20vw;
+}
+
+.add-client-btn {
+  background-color: #f7ce3e;
+}

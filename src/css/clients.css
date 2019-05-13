@@ -1,0 +1,19 @@
+.clients-container {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+}
+
+.clients-first-row {
+  display: grid;
+  grid-template-columns: repeat(7, 10vw);
+  font-weight: 700;
+  background-color: #f7ce3e;
+  text-align: center;
+}
+
+.client-card {
+  display: grid;
+  grid-template-columns: repeat(7, 10vw);
+  text-align: center;
+  grid-gap: 1px;
+}
