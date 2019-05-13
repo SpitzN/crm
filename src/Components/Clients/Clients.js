@@ -13,7 +13,7 @@ class Clients extends Component {
     };
   }
 
-  handleChange = event => {
+  handleInput = event => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -52,13 +52,13 @@ class Clients extends Component {
             name="search"
             id="search-input"
             value={this.state.search}
-            onChange={this.handleChange}
+            onChange={this.handleInput}
           />
           <select
             name="select"
             id="select-input"
             value={this.state.select}
-            onChange={this.handleChange}
+            onChange={this.handleInput}
           >
             <option value="name">Name</option>
             <option value="country">Country</option>

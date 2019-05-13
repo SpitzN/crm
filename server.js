@@ -4,7 +4,10 @@ const bodyParser = require("body-Parser");
 const mongoose = require("mongoose");
 const API = require("./server/routes/api");
 
-mongoose.connect("mongodb://localhost/crm", { useNewUrlParser: true });
+mongoose.connect("mongodb://localhost/crm", {
+  useNewUrlParser: true,
+  useFindAndModify: false
+});
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

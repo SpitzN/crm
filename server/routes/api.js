@@ -2,14 +2,33 @@ const express = require("express");
 const router = express.Router();
 const Client = require("../model/Client");
 
+router.get("/sanity", function(req, res) {
+  res.send("OK!");
+});
+
 router.get("/clients", async function(req, res) {
   let clients = await Client.find({});
   res.send(clients);
 });
 
-router.get("/actions", async function(req, res) {
+router.get("/client/actions", async function(req, res) {
   let clients = await Client.find({}, "_id name owner");
   res.send(clients);
+});
+
+router.put("/client/:id", function(req, res) {
+  const clientID = req.params.id;
+  const UpdateProperty = req.query.propToUpdate;
+  const value = req.body.value;
+
+  Client.findOneAndUpdate(
+    { _id: clientID },
+    { $set: { [UpdateProperty]: value } },
+    function(client) {
+      console.log(`updated ${clientID} property ${UpdateProperty} to ${value}`);
+      res.send(`changed owner of client with id ${clientID}`);
+    }
+  );
 });
 
 module.exports = router;

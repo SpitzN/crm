@@ -1,8 +1,16 @@
 import React, { Component } from "react";
 
 class Input extends Component {
-  handleChange = event => {
-    this.props.handleChange(event);
+  handleInput = event => {
+    this.props.handleInput(event);
+    this.updateClientID(event.target.value);
+  };
+
+  updateClientID = name => {
+    const client = this.props.clients.find(c => c.name === name);
+    if (client) {
+      return this.props.getClientID(client._id);
+    }
   };
 
   render() {
@@ -15,7 +23,7 @@ class Input extends Component {
           name="clientToUpdate"
           type="text"
           placeholder="Client Name"
-          onChange={this.handleChange}
+          onInput={this.handleInput}
         />
         <datalist id="cl">
           {clients.map(c => (
