@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Navbar from "./Components/Navbar";
 import Clients from "./Components/Clients/Clients";
 import Actions from "./Components/Actions/Actions";
-import Analytics from "./Components/Analytics";
+import Analytics from "./Components/Analytics/Analytics";
 
 class App extends Component {
   render() {

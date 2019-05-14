@@ -38,3 +38,5 @@ const addClient = async (name, country, owner) => {
 };
 
 export { getDataFromDB, getClients, updateClient, addClient };
+
+// db.clients.deleteOne( { "_id" : ObjectId("5cda7e171a81dc5a48542c8f") } );
