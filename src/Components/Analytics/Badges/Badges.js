@@ -43,12 +43,12 @@ class Badges extends Component {
     });
 
     let countries = Object.keys(countryBreakdown);
-    let maxClients = 0;
+    let maxSales = 0;
     let hottestCountry = "";
 
     countries.forEach(c => {
-      if (countryBreakdown[c] > maxClients) {
-        maxClients = countryBreakdown[c];
+      if (countryBreakdown[c] > maxSales) {
+        maxSales = countryBreakdown[c];
         hottestCountry = c;
       }
     });
