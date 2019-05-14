@@ -31,4 +31,20 @@ router.put("/client/:id", function(req, res) {
   );
 });
 
+router.post("/client/new", async (req, res) => {
+  let client = req.body;
+  let newClient = await new Client({
+    name: client.name,
+    email: client.email,
+    firstContact: client.firstContact,
+    emailType: client.emailType,
+    sold: client.sold,
+    owner: client.owner,
+    country: client.country
+  });
+
+  newClient.save();
+  res.send(console.log(`saved new client ${client.name} to DB`));
+});
+
 module.exports = router;

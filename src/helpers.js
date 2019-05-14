@@ -13,8 +13,28 @@ const getClients = async () => {
 const updateClient = async (clientId, UpdateProperty, updateValue) => {
   await Axios.put(
     `http://localhost:2000/client/${clientId}/?propToUpdate=${UpdateProperty}`,
-    { value: updateValue }
+    { value: updateValue },
+    function() {
+      console.log(clientId, UpdateProperty, updateValue);
+    }
   );
 };
 
-export { getDataFromDB, getClients, updateClient };
+const addClient = async (name, country, owner) => {
+  const newClient = {
+    name: name,
+    email: "",
+    firstContact: Date.now(),
+    emailType: null,
+    sold: false,
+    owner: owner,
+    country: country
+  };
+  await Axios.post(`http://localhost:2000/client/new`, newClient).catch(
+    error => {
+      console.log(error);
+    }
+  );
+};
+
+export { getDataFromDB, getClients, updateClient, addClient };

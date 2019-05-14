@@ -35,7 +35,7 @@ class Update extends Component {
       this.state.selectEmail
     );
 
-  // declareSale = () => updateClient(this.state.clientIdToUpdate, `sold`);
+  declareSale = () => updateClient(this.state.clientIdToUpdate, `sold`, true);
 
   componentDidMount = async () => {
     const client = await getClients();
@@ -95,7 +95,9 @@ class Update extends Component {
         </div>
         <div className="sale-container">
           <span>Declare Sale: </span>
-          <button className="sale-btn">Sale</button>
+          <button className="sale-btn" onClick={this.declareSale}>
+            Sale
+          </button>
         </div>
       </div>
     );
