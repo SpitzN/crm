@@ -1,0 +1,71 @@
+
+
+.badges-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    width: 100vw;
+    padding: 1% 1%;
+  }
+  
+  .badge-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: 1fr;
+  }
+  
+  .icon {
+    display: grid;
+  
+    color: white;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    text-align: center;
+    align-items: center;
+    align-content: center;
+    justify-self: center;
+    margin: 3%;
+  }
+  
+  .fas {
+    align-self: center;
+    justify-self: center;
+    font-size: 2.5em;
+  }
+  
+  .country-badge {
+    background-color: gold;
+  }
+  
+  .email-badge {
+    background-color: aqua;
+  }
+  
+  .outstanding-badge {
+    background-color: red;
+  }
+  
+  .newClients-badge {
+    background-color: seagreen;
+  }
+  
+  .badge-details {
+    display: grid;
+    justify-items: center;
+    align-self: center;
+    justify-self: center;
+    font-size: 1.5em;
+  }
+  
+  .result {
+    font-size: 1.5em;
+    font-weight: 700;
+    font-family: cursive;
+  }
+  
+  .info {
+    font-size: 0.5em;
+    font-weight: 700;
+  }
+  

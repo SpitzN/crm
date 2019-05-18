@@ -1,0 +1,27 @@
+.charts-container {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-areas:
+    "te cs cs cs"
+    "sd sd sd ca";
+}
+
+.chart {
+  
+}
+
+.top-employees-chart {
+  grid-area: te;
+}
+
+.country-sales-chart {
+  grid-area: cs;
+}
+
+.sales-by-date-chart {
+  grid-area: sd;
+}
+
+.client-acquisition-chart {
+  grid-area: ca;
+}

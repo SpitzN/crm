@@ -2,9 +2,12 @@ import React from "react";
 
 const EmailSentBadge = props => {
   return (
-    <div className="emails-sent-badge">
-      <span>{props.checkEmailStatus()}</span>
-      <span>Emails Sent</span>
+    <div className="badge-container">
+      <i className="fas fa-envelope icon email-badge" />
+      <div className="badge-details">
+        <span className="result">{props.checkEmailStatus()}</span>
+        <span className="info">Emails Sent</span>
+      </div>
     </div>
   );
 };

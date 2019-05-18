@@ -1,79 +1,73 @@
 import React, { Component } from "react";
 import {
   ComposedChart,
-  Line,
-  Area,
   Bar,
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip,
-  Legend
+  Tooltip
 } from "recharts";
-
-const data = [
-  {
-    name: "Page A",
-    uv: 590,
-    pv: 800,
-    amt: 1400
-  },
-  {
-    name: "Page B",
-    uv: 868,
-    pv: 967,
-    amt: 1506
-  },
-  {
-    name: "Page C",
-    uv: 1397,
-    pv: 1098,
-    amt: 989
-  },
-  {
-    name: "Page D",
-    uv: 1480,
-    pv: 1200,
-    amt: 1228
-  },
-  {
-    name: "Page E",
-    uv: 1520,
-    pv: 1108,
-    amt: 1100
-  },
-  {
-    name: "Page F",
-    uv: 1400,
-    pv: 680,
-    amt: 1700
-  }
-];
-
 class TopEmployees extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: []
+    };
+  }
+
+  findAllOwners = () => {
+    const gatherOwners = this.props.data.filter(d => d.sold).map(d => d.owner);
+    const ownerList = [
+      ...new Set(this.props.data.filter(d => d.sold).map(d => d.owner))
+    ];
+    const owners = ownerList.map(o => ({ owner: o, count: 0 }));
+
+    gatherOwners.forEach(name => {
+      owners.find(o => {
+        if (o.owner === name) {
+          o.count++;
+        }
+      });
+    });
+    return owners;
+  };
+
+  findTop3 = () => {
+    let topEmployees = this.findAllOwners()
+      .sort((a, b) => b.count - a.count)
+      .slice(0, 3);
+    return topEmployees;
+  };
+
+  componentDidMount = async () => {
+    await this.setState({
+      data: this.findTop3()
+    });
+  };
+
   buildChart = () => {
     return (
-      <ComposedChart
-        layout="vertical"
-        width={500}
-        height={400}
-        data={data}
-        margin={{
-          top: 20,
-          right: 20,
-          bottom: 20,
-          left: 20
-        }}
-      >
-        <CartesianGrid stroke="#f5f5f5" />
-        <XAxis type="number" />
-        <YAxis dataKey="name" type="category" />
-        <Tooltip />
-        <Legend />
-        <Area dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-        <Line dataKey="uv" stroke="#ff7300" />
-      </ComposedChart>
+      <div className="chart top-employees-chart">
+        <ComposedChart
+          layout="vertical"
+          width={500}
+          height={350}
+          data={this.state.data}
+          margin={{
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 20
+          }}
+        >
+          <CartesianGrid stroke="#f5f5f5" />
+          <XAxis type="number" />
+          <YAxis dataKey="owner" type="category" />
+          <Tooltip />
+          {/* <Area dataKey="count" fill="#8884d8" stroke="#8884d8" /> */}
+          <Bar dataKey="count" barSize={20} fill="#413ea0" />
+        </ComposedChart>
+      </div>
     );
   };
 

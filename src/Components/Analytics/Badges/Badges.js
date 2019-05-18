@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import NewClientsBadge from "./NewClientsBadge";
 import EmailSentBadge from "./EmailSentBadge";
 import OutstandingBadge from "./OutstandingBadge";
+import CountryBadge from "./CountryBadge";
+import "../../../css/badges.css";
 
 class Badges extends Component {
   formatDate = date => {
@@ -64,7 +66,7 @@ class Badges extends Component {
         />
         <EmailSentBadge checkEmailStatus={this.checkEmailStatus} />
         <OutstandingBadge outstandingClients={this.outstandingClients} />
-        {this.countryBreakdownBySales()}
+        <CountryBadge countryBreakdownBySales={this.countryBreakdownBySales} />
       </div>
     );
   }

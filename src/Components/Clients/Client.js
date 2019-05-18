@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "../../css/clients.css";
+import { async } from "q";
 
 class Client extends Component {
   constructor() {
@@ -17,6 +18,8 @@ class Client extends Component {
 
     return `${month}/${day}/${year}`;
   };
+
+
 
   render() {
     let client = this.props.client;

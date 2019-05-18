@@ -37,6 +37,16 @@ const addClient = async (name, country, owner) => {
   );
 };
 
-export { getDataFromDB, getClients, updateClient, addClient };
+const getLastThirty = async () => {
+  let dates = await Axios.get(`http://localhost:2000/analytics/charts/sales`);
+  return dates.data;
+};
 
-// db.clients.deleteOne( { "_id" : ObjectId("5cda7e171a81dc5a48542c8f") } );
+const clientAcquisition = () => {
+  let result = await Axios.get(`http://localhost:2000/analytics/charts/ca`)
+  return result.data
+
+}
+
+export { getDataFromDB, getClients, updateClient, addClient, getLastThirty, clientAcquisition };
+

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Client from "./Client.js";
 import ClientsHeader from "./ClientsHeader.js";
 import { getDataFromDB } from "../../helpers";
+import Loading from "../Layout/Loading.js";
 
 class Clients extends Component {
   constructor() {
@@ -9,7 +10,8 @@ class Clients extends Component {
     this.state = {
       data: [],
       search: "",
-      select: "name"
+      select: "name",
+      loading: true
     };
   }
 
@@ -27,48 +29,56 @@ class Clients extends Component {
 
   filterClientList = () => {
     const copyData = [...this.state.data];
-    const filtered = copyData.filter(c =>
+    const filteredClientList = copyData.filter(c =>
       c[this.state.select]
         .toUpperCase()
         .toLowerCase()
         .includes(this.state.search)
     );
-    return filtered.map(c => <Client key={c._id} client={c} />);
+    return filteredClientList.map(c => <Client key={c._id} client={c} />);
   };
 
   componentDidMount = () => {
     getDataFromDB().then(data => {
       this.setState({
-        data
+        data,
+        loading: false
       });
     });
   };
 
   render() {
+    const loading = this.state.loading;
     return (
-      <div className="clients-container">
-        <div className="clients-filter-bar">
-          <input
-            name="search"
-            id="search-input"
-            value={this.state.search}
-            onChange={this.handleInput}
-          />
-          <select
-            name="select"
-            id="select-input"
-            value={this.state.select}
-            onChange={this.handleInput}
-          >
-            <option value="name">Name</option>
-            <option value="country">Country</option>
-            <option value="owner">Owner</option>
-          </select>
-        </div>
-        <ClientsHeader />
-        {this.state.search === ""
-          ? this.state.data.map(c => this.getClient(c))
-          : this.filterClientList()}
+      <div>
+        {loading ? (
+          <Loading />
+        ) : (
+          <div className="clients-container">
+            <div className="clients-filter-bar">
+              <input
+                name="search"
+                id="search-input"
+                value={this.state.search}
+                onChange={this.handleInput}
+              />
+              <select
+                name="select"
+                id="select-input"
+                value={this.state.select}
+                onChange={this.handleInput}
+              >
+                <option value="name">Name</option>
+                <option value="country">Country</option>
+                <option value="owner">Owner</option>
+              </select>
+            </div>
+            <ClientsHeader />
+            {this.state.search === ""
+              ? this.state.data.map(c => this.getClient(c))
+              : this.filterClientList()}
+          </div>
+        )}
       </div>
     );
   }

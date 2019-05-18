@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { getDataFromDB } from "../../helpers";
+import Loading from "../Layout/Loading";
 import Badges from "./Badges/Badges";
 import Charts from "./Charts/Charts";
+import "../../css/analytics.css";
 
 class Analytics extends Component {
   constructor() {
@@ -23,8 +25,14 @@ class Analytics extends Component {
   render() {
     return (
       <div>
-        {this.state.loading ? <div /> : <Badges clients={this.state.clients} />}
-        <Charts />
+        {this.state.loading ? (
+          <Loading />
+        ) : (
+          <div className="analytics-container">
+            <Badges clients={this.state.clients} />
+            <Charts clients={this.state.clients}/>
+          </div>
+        )}
       </div>
     );
   }

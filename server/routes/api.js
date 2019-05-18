@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Client = require("../model/Client");
+const moment = require("moment");
 
 router.get("/sanity", function(req, res) {
   res.send("OK!");
@@ -45,6 +46,52 @@ router.post("/client/new", async (req, res) => {
 
   newClient.save();
   res.send(console.log(`saved new client ${client.name} to DB`));
+});
+
+router.get("/analytics/charts/sales", async function(req, res) {
+  let clients = await Client.find({}, "firstContact sold");
+  let today = moment();
+  const thirtyDaysAgo = moment().subtract(30, "days");
+
+  const salesList = clients
+    .filter(c => c.sold)
+    .filter(c => moment(c.firstContact).isBetween(thirtyDaysAgo, today))
+    .map(c => ({ date: moment(c.firstContact) }));
+
+  let countObj = {};
+
+  salesList.forEach(d => {
+    let dateStr = d.date.format("L");
+    countObj[dateStr] = 0;
+  });
+
+  salesList.forEach(s => {
+    countObj[s.date.format("L")]++;
+  });
+
+  res.send(countObj);
+});
+
+router.get("/analytics/charts/ca", async (req, res) => {
+  let clients = await Client.find({}, "firstContact");
+  const dateList = [
+    ...new Set(
+      clients
+        .filter(c => c.firstContact)
+        .map(c => moment(c.firstContact).format("L"))
+    )
+  ];
+  const salesByDate = dateList.map(d => ({ date: d, count: 0 }));
+
+  clients.forEach(d => {
+    salesByDate.find(s => {
+      if (s.date === moment(d.firstContact).format("L")) {
+        s.count++;
+      }
+    });
+  });
+
+  res.send(salesByDate);
 });
 
 module.exports = router;
