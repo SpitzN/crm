@@ -1,4 +1,5 @@
 import Axios from "axios";
+import { async } from "q";
 
 const getDataFromDB = async () => {
   let clients = await Axios.get(`http://localhost:2000/clients`);
@@ -42,11 +43,16 @@ const getLastThirty = async () => {
   return dates.data;
 };
 
-const clientAcquisition = () => {
-  let result = await Axios.get(`http://localhost:2000/analytics/charts/ca`)
-  return result.data
+const clientAcquisition = async () => {
+  let result = await Axios.get(`http://localhost:2000/analytics/charts/ca`);
+  return result.data;
+};
 
-}
-
-export { getDataFromDB, getClients, updateClient, addClient, getLastThirty, clientAcquisition };
-
+export {
+  getDataFromDB,
+  getClients,
+  updateClient,
+  addClient,
+  getLastThirty,
+  clientAcquisition
+};

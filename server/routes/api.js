@@ -51,7 +51,7 @@ router.post("/client/new", async (req, res) => {
 router.get("/analytics/charts/sales", async function(req, res) {
   let clients = await Client.find({}, "firstContact sold");
   let today = moment();
-  const thirtyDaysAgo = moment().subtract(30, "days");
+  let thirtyDaysAgo = moment().subtract(30, "days");
 
   const salesList = clients
     .filter(c => c.sold)
@@ -74,15 +74,15 @@ router.get("/analytics/charts/sales", async function(req, res) {
 
 router.get("/analytics/charts/ca", async (req, res) => {
   let clients = await Client.find({}, "firstContact");
+
   const dateList = [
     ...new Set(
       clients
-        .filter(c => c.firstContact)
+        .filter(c => moment(c.firstContact).format("L"))
         .map(c => moment(c.firstContact).format("L"))
     )
   ];
   const salesByDate = dateList.map(d => ({ date: d, count: 0 }));
-
   clients.forEach(d => {
     salesByDate.find(s => {
       if (s.date === moment(d.firstContact).format("L")) {
