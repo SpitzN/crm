@@ -25,6 +25,10 @@ class SalesDate extends Component {
       Object.keys(rawData).forEach(k =>
         data.push({ date: k, count: rawData[k] })
       );
+      data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+      console.log(data);
+
       this.setState({
         data
       });
@@ -40,8 +44,8 @@ class SalesDate extends Component {
       <div className="chart sales-by-date-chart">
         <ResponsiveContainer width="100%">
           <LineChart
-            width={700}
-            height={300}
+            width={500}
+            height={200}
             data={this.state.data}
             margin={{
               top: 5,

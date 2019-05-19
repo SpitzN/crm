@@ -1,14 +1,16 @@
 .charts-container {
   display: grid;
   grid-gap: 10px;
+  align-content: center;
   grid-template-areas:
-    "te cs cs cs"
-    "sd sd sd ca";
+    "te te cs cs"
+    "sd sd ca ca";
 }
 
-/* .chart {
-  
-} */
+.chart {
+  width: auto;
+  margin-top: 10px;
+}
 
 .top-employees-chart {
   grid-area: te;

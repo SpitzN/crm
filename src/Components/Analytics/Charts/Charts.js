@@ -3,6 +3,7 @@ import TopEmployees from "./TopEmployees";
 import CountrySales from "./CountrySales";
 import SalesDate from "./SalesDate";
 import ClientAcqu from "./ClientAcqu";
+import ClientPie from "./ClientPie";
 import "../../../css/charts.css";
 
 class Charts extends Component {
@@ -12,7 +13,7 @@ class Charts extends Component {
         <TopEmployees data={this.props.clients} />
         <CountrySales data={this.props.clients} />
         <SalesDate />
-        <ClientAcqu />
+        <ClientPie />
       </div>
     );
   }
