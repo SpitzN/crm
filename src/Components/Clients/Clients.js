@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Client from "./Client.js";
 import ClientsHeader from "./ClientsHeader.js";
-import { getDataFromDB } from "../../helpers";
+import { getDataFromDB } from "../../apiR";
 import Loading from "../Layout/Loading.js";
 
 class Clients extends Component {

@@ -27,7 +27,7 @@ router.put("/client/:id", function(req, res) {
     { $set: { [UpdateProperty]: value } },
     function(client) {
       console.log(`updated ${clientID} property ${UpdateProperty} to ${value}`);
-      res.send(`changed owner of client with id ${clientID}`);
+      res.send(`changed ${UpdateProperty} of client with id ${clientID}`);
     }
   );
 });

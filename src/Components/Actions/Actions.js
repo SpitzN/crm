@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Add from "./Add";
 import "../../css/actions.css";
 import Update from "./Update";
-import { async } from "q";
 import Loading from "../Layout/Loading";
 
 class Actions extends Component {

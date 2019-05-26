@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getLastThirty } from "../../../helpers";
+import { getLastThirty } from "../../../apiR";
 import {
   ResponsiveContainer,
   LineChart,
@@ -63,6 +63,7 @@ class SalesDate extends Component {
               type="monotone"
               dataKey="count"
               stroke="#8884d8"
+              strokeWidth={5}
               activeDot={{ r: 8 }}
             />
           </LineChart>

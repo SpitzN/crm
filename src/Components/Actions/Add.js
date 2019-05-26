@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/actions.css";
-import { addClient } from "../../helpers";
+import { addClient } from "../../apiR";
 
 class Add extends Component {
   constructor() {

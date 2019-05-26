@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { PieChart, Pie, Sector } from "recharts";
 import moment from "moment";
-import { clientAcquisition } from "../../../helpers";
+import { clientAcquisition } from "../../../apiR";
 
 const renderActiveShape = props => {
   const RADIAN = Math.PI / 180;

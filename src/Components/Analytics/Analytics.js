@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { getDataFromDB } from "../../helpers";
+import { getDataFromDB } from "../../apiR";
 import Loading from "../Layout/Loading";
 import Badges from "./Badges/Badges";
 import Charts from "./Charts/Charts";

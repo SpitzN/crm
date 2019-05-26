@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { async } from "q";
+
 
 const getDataFromDB = async () => {
   let clients = await Axios.get(`http://localhost:2000/clients`);

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { clientAcquisition } from "../../../helpers";
+import { clientAcquisition } from "../../../apiR";
 import { PieChart, Pie, Sector, Cell } from "recharts";
 import moment from "moment";
 

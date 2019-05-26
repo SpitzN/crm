@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "../../css/clients.css";
-import { async } from "q";
+import ClientModal from "./ClientModal";
 
 class Client extends Component {
   constructor() {
@@ -19,7 +19,11 @@ class Client extends Component {
     return `${month}/${day}/${year}`;
   };
 
-
+  toggleModal = () => {
+    this.setState({
+      showModal: !this.state.showModal
+    });
+  };
 
   render() {
     let client = this.props.client;
@@ -35,16 +39,28 @@ class Client extends Component {
       isSoldClass = sold ? "fas fa-check" : "none";
 
     return (
-      <div className="client-card">
-        <span className="first-name">{firstName}</span>
-        <span className="last-name">{lastName}</span>
-        <span className="country">{country}</span>
-        <span className="first-contact">{dateOfContact}</span>
-        <span className="email-type">{emailType}</span>
-        <span className="sold">
-          {sold ? <i className={isSoldClass} /> : "-"}
-        </span>
-        <span className="owner">{owner}</span>
+      <div className="row">
+        {this.state.showModal ? (
+          <ClientModal
+            closeModal={this.toggleModal}
+            name={firstName}
+            surname={lastName}
+            country={country}
+            client={client}
+          />
+        ) : (
+          <div className="client-card" onClick={this.toggleModal}>
+            <span className="first-name">{firstName}</span>
+            <span className="last-name">{lastName}</span>
+            <span className="country">{country}</span>
+            <span className="first-contact">{dateOfContact}</span>
+            <span className="email-type">{emailType}</span>
+            <span className="sold">
+              {sold ? <i className={isSoldClass} /> : "-"}
+            </span>
+            <span className="owner">{owner}</span>
+          </div>
+        )}
       </div>
     );
   }
